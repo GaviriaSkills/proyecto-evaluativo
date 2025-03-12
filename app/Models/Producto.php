@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Porducto extends Model
+class Producto extends Model
 {
     use HasFactory;
 
-    protected $table = 'producto';
     protected $fillable = ['nombre', 'precio', 'descripcion', 'imagen', 'categoria_id'];
 
     public function categoria()
@@ -17,3 +16,4 @@ class Porducto extends Model
         return $this->belongsTo('App\Models\Categoria');
     }
 }
+
