@@ -1,0 +1,18 @@
+{
+    "Home": "Inicio",
+    "Products": "Productos",
+    "Categories": "Categorías",
+    "No products": "No hay productos",
+    "New Product": "Nuevo Producto",
+    "Edit Product": "Editar Producto",
+    "Delete Product": "Eliminar Producto",
+    "Product Name": "Nombre del Producto",
+    "Product Price": "Precio del Producto",
+    "Product Category": "Categoría del Producto",
+    "Product Description": "Descripción del Producto",
+    "Product Image": "Imagen del Producto",
+    "Product Stock": "Stock del Producto",
+    "Create Product": "Crear Producto",
+    "Save": "Guardar",
+    "No categories found": "No se encontraron categorías"
+}
