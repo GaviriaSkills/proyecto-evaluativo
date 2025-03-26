@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,12 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $products = Producto::get();
-        return view('products.index', compact('products'));
+        $categorias = Categoria::all();
+
+        $products = Producto::when(request('categoria'), function ($query, $categoria) {
+            return $query->where('categoria_id', $categoria);
+        })->get();
+        return view('products.index', compact('products', 'categorias'));
     }
 
     /**
@@ -23,7 +28,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categorias = Categoria::latest()->get();
+        return view('products.create' , compact('categorias'));
     }
 
     /**
@@ -32,10 +38,11 @@ class ProductoController extends Controller
     public function store(ProductRequest $request)
     {
         Producto::create([
-            'nombre' => $request['name'],
-            'descripcion' => $request['description'],
-            'precio' => $request['price'],
+            'nombre' => $request['nombre'],
+            'descripcion' => $request['descripcion'],
+            'precio' => $request['precio'],
             'stock' => $request['stock'],
+            'categoria_id' => $request['categoria_id'],
             'imagen' => $request['imagen']
         ]);
 
@@ -55,7 +62,8 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //
+        $categorias = Categoria::latest()->get();
+        return view('products.edit', compact('producto', 'categorias'));
     }
 
     /**
@@ -63,7 +71,16 @@ class ProductoController extends Controller
      */
     public function update(ProductRequest $request, Producto $producto)
     {
-        //
+        $producto->update([
+            'nombre' => $request['nombre'],
+            'descripcion' => $request['descripcion'],
+            'precio' => $request['precio'],
+            'stock' => $request['stock'],
+            'categoria_id' => $request['categoria_id'],
+            'imagen' => $request['imagen']
+        ]);
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -71,6 +88,7 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        $producto->delete();
+        return redirect()->route('product.index');
     }
 }

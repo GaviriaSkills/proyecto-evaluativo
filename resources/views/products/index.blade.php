@@ -1,15 +1,27 @@
 @extends('partials.layout')
 
-@section('titlte', 'Productos')
+@section('title', 'Productos')
 
 @section('content')
     <h1>@lang('Products')</h1>
+    <form method="GET" action="{{ route('product.index') }}">
+        <label for="categoria">Filtrar por categoria</label>
+        <select name="categoria" id="categoria" onchange="this.form.submit()">
+            <option value="">@lang('All')</option>
+            @foreach ($categorias as $categoria)
+                <option value="{{ $categoria->id }}" {{ request('categoria') == $categoria->id ? 'selected' : '' }}>
+                    {{ $categoria->nombre }}
+                </option>
+            @endforeach
+        </select>
+    </form>
+
     <a href="{{ route('product.create') }}">@lang('New Product')</a>
     <ul>
         @forelse ($products as $product)
             <li>
                 <a href="{{ route('product.show', $product) }}">
-                    {{ $product->name }}
+                    {{ $product->nombre }}
                     <small>
                         <em>{{ $product->created_at }}</em>
                     </small>

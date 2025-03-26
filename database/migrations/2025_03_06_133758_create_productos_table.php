@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('precio', 8, 2)->nullable();
             $table->integer('stock')->nullable();
             $table->string('imagen')->nullable();
-            $table->foreignId('categoria_id')->constrained('categorias')->nullable();
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('restrict')->nullable();
             $table->timestamps();
         });
     }
