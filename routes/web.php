@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticulosController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
@@ -32,3 +33,9 @@ Route::get('categoria/edit/{categoria}', [CategoriaController::class, 'edit'])->
 Route::patch('categoria/{categoria}', [CategoriaController::class, 'update'])->name('categorias.update');
 
 Route::delete('categoria/{categoria}', [CategoriaController::class, 'destroy'])->name('categorias.delete');
+
+Route::get('articulo', [ArticulosController::class, 'index'])->name('articulos.index');
+
+Route::get('articulo/create', [ArticulosController::class, 'create'])->name('articulos.create');
+
+Route::get('articulo/{articulo}', [ArticulosController::class, 'show'])->name('articulos.show');

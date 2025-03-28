@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticuloRequest;
 use App\Models\Articulos;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class ArticulosController extends Controller
      */
     public function index()
     {
-        //
+        $articulos = Articulos::all();
+        return view('articulos.index', compact('articulos'));
     }
 
     /**
@@ -20,15 +22,22 @@ class ArticulosController extends Controller
      */
     public function create()
     {
-        //
+        return view('articulos.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ArticuloRequest $request)
     {
-        //
+        Articulos::create([
+            'titulo' => $request['titulo'],
+            'contenido' => $request['contenido'],
+            'imagen' => $request['imagen'],
+            'categoriaBlog_id' => $request['categoriaBlog_id']
+        ]);
+
+        return redirect()->route('articulos.index');
     }
 
     /**
@@ -36,7 +45,7 @@ class ArticulosController extends Controller
      */
     public function show(Articulos $articulos)
     {
-        //
+        return view('articulos.show', compact('articulos'));
     }
 
     /**
