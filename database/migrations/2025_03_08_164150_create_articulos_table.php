@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('titulo')->nullable();
             $table->string('contenido')->nullable();
             $table->string('imagen')->nullable();
-            $table->foreignId('categoriaBlog_id')->constrained('categoria_blogs')->nullable();
+            $table->foreignId('categoriaBlog_id')->constrained('categoria_blogs')->onDelete('restrict')->nullable();
             $table->timestamps();
         });
     }

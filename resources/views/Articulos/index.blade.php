@@ -3,12 +3,13 @@
 
 @section('content')
     <h1>@lang('Articulos')</h1>
-    <a href="{{ route('articulos.create') }}">@lang('New Articulo')</a>
+    <a href="{{ route('categoriaBlog.index') }}">@lang('Categories de Blog')</a><br>
+    <a href="{{ route('articulos.create') }}">@lang('New Articul')</a>
     <ul>
         @forelse ($articulos as $articulo)
             <li>
                 <a href="{{ route('articulos.show', $articulo) }}">
-                    {{ $articulo->nombre }}
+                    {{ $articulo->titulo }}<br>
                     <small>
                         <em>{{ $articulo->created_at }}</em>
                     </small>
@@ -18,7 +19,7 @@
             <li>@lang('No articuls found')</li>
         @endforelse
     </ul>
-    {{-- <div class="pagination">
+    <div class="pagination">
         {{ $articulos->links() }}
-    </div> --}}
+    </div>
 @endsection

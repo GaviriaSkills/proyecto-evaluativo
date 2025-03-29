@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('contenido')->nullable();
             $table->string('nombreUsuario')->nullable();
             $table->string('email')->nullable();
-            $table->foreignId('articulo_id')->constrained('articulos')->nullable();
+            $table->foreignId('articulo_id')->constrained('articulos')->onDelete('restrict')->nullable();
             $table->timestamps();
         });
     }

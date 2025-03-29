@@ -28,11 +28,16 @@
     "Create Category": "Crear Categoría",
     "Back to categories": "Volver a Categorías",
     "Edit": "Editar",
-    "This is the blog page.": "Esta es la página del blog.",
-    "Here you can find the latest news and updates.": "Aquí puedes encontrar las últimas noticias y actualizaciones.",
     "Articuls": "Artículos",
     "No articuls found": "No se encontraron artículos",
-    "New Articulo": "Nuevo Artículo",
-    "Edit Articulo": "Editar Artículo",
-    "Update Articulo": "Actualizar Artículo"
+    "New Articul": "Nuevo Artículo",
+    "Edit Articul": "Editar Artículo",
+    "Update Articul": "Actualizar Artículo",
+    "Categories de Blog": "Categorías del Blog",
+    "Title": "Título",
+    "Content": "Contenido",
+    "Image": "Imagen",
+    "Create Articul": "Crear Artículo",
+    "Back to Articuls": "Volver a Artículos",
+    "Delete Articul": "Eliminar Artículo"
 }
