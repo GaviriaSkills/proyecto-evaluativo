@@ -39,7 +39,7 @@ class ArticulosController extends Controller
             'categoriaBlog_id' => $request['categoriaBlog_id']
         ]);
 
-        return redirect()->route('articulos.index');
+        return redirect()->route('articulos.index')->with('status', 'Articulo creado correctamente');
     }
 
     /**
@@ -53,25 +53,25 @@ class ArticulosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Articulos $articulos)
+    public function edit(Articulos $articulo)
     {
         $categorias = CategoriaBlog::latest()->get();
-        return view('articulos.edit', compact('articulos', 'categorias'));
+        return view('articulos.edit', compact('articulo', 'categorias'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ArticuloRequest $request, Articulos $articulos)
+    public function update(ArticuloRequest $request, Articulos $articulo)
     {
-        $articulos->update([
+        $articulo->update([
             'titulo' => $request['titulo'],
             'contenido' => $request['contenido'],
             'imagen' => $request['imagen'],
             'categoriaBlog_id' => $request['categoriaBlog_id']
         ]);
 
-        return redirect()->route('articulos.index');
+        return redirect()->route('articulos.index')->with('status', 'Articulo actualizado correctamente');
     }
 
     /**
@@ -80,6 +80,11 @@ class ArticulosController extends Controller
     public function destroy(Articulos $articulo)
     {
         $articulo->delete();
-        return redirect()->route('articulos.index');
+        return redirect()->route('articulos.index')->with('status', 'Articulo eliminado correctamente');
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
     }
 }

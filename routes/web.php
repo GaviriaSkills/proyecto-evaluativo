@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticulosController;
 use App\Http\Controllers\CategoriaBlogController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('home');
@@ -47,7 +48,7 @@ Route::get('articulo/edit/{articulo}', [ArticulosController::class, 'edit'])->na
 
 Route::patch('articulos/{articulo}', [ArticulosController::class, 'update'])->name('articulos.update');
 
-// Route::delete('articulo/{articulo}', [ArticulosController::class, 'destroy'])->name('articulos.delete');
+Route::delete('articulo/{articulo}', [ArticulosController::class, 'destroy'])->name('articulos.delete');
 
 Route::get('categoriaBlog', [CategoriaBlogController::class, 'index'])->name('categoriaBlog.index');
 
@@ -62,3 +63,4 @@ Route::get('categoriaBlog/edit/{categoriaBlog}', [CategoriaBlogController::class
 Route::patch('categoriaBlog/{categoriaBlog}', [CategoriaBlogController::class, 'update'])->name('categoriaBlog.update');
 
 Route::delete('categoriaBlog/{categoriaBlog}', [CategoriaBlogController::class, 'destroy'])->name('categoriaBlog.delete');
+Auth::routes();

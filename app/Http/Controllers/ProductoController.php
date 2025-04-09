@@ -46,7 +46,7 @@ class ProductoController extends Controller
             'imagen' => $request['imagen']
         ]);
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('status', 'Producto creado correctamente');
     }
 
     /**
@@ -80,7 +80,7 @@ class ProductoController extends Controller
             'imagen' => $request['imagen']
         ]);
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('status', 'Producto actualizado correctamente');
     }
 
     /**
@@ -89,6 +89,11 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         $producto->delete();
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('status', 'Producto eliminado correctamente');
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
     }
 }

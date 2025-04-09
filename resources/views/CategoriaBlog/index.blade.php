@@ -4,7 +4,9 @@
 
 @section('content')
     <h1>@lang('Categories de Blog')</h1>
-    <a href="{{ route('categoriaBlog.create') }}">@lang('New Category')</a>
+    @auth
+        <a href="{{ route('categoriaBlog.create') }}">@lang('New Category')</a>
+    @endauth
     <ul>
         @forelse ($categorias as $categoria)
             <li>

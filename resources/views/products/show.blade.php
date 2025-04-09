@@ -11,11 +11,15 @@
     <p>Precio: {{ $producto->precio }}</p>
     <p>Stock: {{ $producto->stock }}</p>
     <p>Publicado: {{ $producto->created_at->diffForHumans() }}</p>
-    <a href="{{ route('product.edit', $producto) }}">@lang('Edit Product')</a>
-    <form method="POST" action="{{ route('product.delete', $producto) }}">
-        @csrf
-        @method('DELETE')
-        <button>@lang('Delete Product')</button>
-    </form>
+    @auth  
+        <a href="{{ route('product.edit', $producto) }}">@lang('Edit Product')</a>
+    @endauth
+    @auth
+        <form method="POST" action="{{ route('product.delete', $producto) }}">
+            @csrf
+            @method('DELETE')
+            <button>@lang('Delete Product')</button>
+        </form>
+    @endauth
     <a href="{{ route('product.index') }}">@lang('Back to products')</a>
 @endsection

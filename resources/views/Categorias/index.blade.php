@@ -4,7 +4,9 @@
 
 @section('content')
     <h1>@lang('Categories')</h1>
+    @auth 
         <a href="{{ route('categorias.create') }}">@lang('New Category')</a>
+    @endauth
     <ul>
         @forelse ($categorias as $categoria)
             <li>

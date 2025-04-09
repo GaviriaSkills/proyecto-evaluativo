@@ -35,7 +35,7 @@ class CategoriaController extends Controller
             'descripcion' => $request['descripcion'],
         ]);
 
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('status', 'Categoria creada correctamente');
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoriaController extends Controller
             'descripcion' => $request['descripcion'],
         ]);
 
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('status', 'Categoria actualizada correctamente');
     }
 
     /**
@@ -73,6 +73,11 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         $categoria->delete();
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('status', 'Categoria eliminada correctamente');
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
     }
 }

@@ -13,7 +13,9 @@
 </head>
 <body>
     @include('partials.nav')
-
+        @if (session('status'))
+            {{ session('status') }}
+        @endif
     @yield('content')
 </body>
 </html>

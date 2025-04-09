@@ -4,7 +4,9 @@
 @section('content')
     <h1>@lang('Articulos')</h1>
     <a href="{{ route('categoriaBlog.index') }}">@lang('Categories de Blog')</a><br>
-    <a href="{{ route('articulos.create') }}">@lang('New Articul')</a>
+    @auth
+        <a href="{{ route('articulos.create') }}">@lang('New Articul')</a>
+    @endauth
     <ul>
         @forelse ($articulos as $articulo)
             <li>
@@ -20,6 +22,6 @@
         @endforelse
     </ul>
     <div class="pagination">
-        {{ $articulos->links() }}
+        {{ $articulos->links('pagination::bootstrap-5') }}
     </div>
 @endsection

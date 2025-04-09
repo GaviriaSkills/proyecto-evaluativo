@@ -12,19 +12,19 @@
         </ul>
     @endif
 
-    <form method="POST" action="{{ route('articulos.update', $articulos->id) }}">
+    <form method="POST" action="{{ route('articulos.update', $articulo->id) }}">
         @csrf
         @method('PATCH')
         <label for="">@lang('Title')</label><br>
-        <input type="text" name="titulo" placeholder="Titulo del articulo" value="{{ old('titulo', $articulos['titulo']) }}"><br>
+        <input type="text" name="titulo" placeholder="Titulo del articulo" value="{{ old('titulo', $articulo['titulo']) }}"><br>
         <label for="">@lang('Content')</label><br>
-        <textarea name="contenido" placeholder="Contenido del articulo">{{ old('contenido', $articulos['contenido']) }}</textarea><br>
+        <textarea name="contenido" placeholder="Contenido del articulo">{{ old('contenido', $articulo['contenido']) }}</textarea><br>
         <label for="">@lang('Image')</label><br>
-        <input type="text" name="imagen" placeholder="Imagen del articulo" value="{{ old('imagen', $articulos['imagen']) }}"><br>
+        <input type="text" name="imagen" placeholder="Imagen del articulo" value="{{ old('imagen', $articulo['imagen']) }}"><br>
         <label for="">@lang('Category')</label><br>
         <select name="categoriaBlog_id" id="categoriaBlog_id"><br>
             @foreach ($categorias as $categoria)
-                <option value="{{ $categoria->id }}" {{ old('categoria_id', $articulos->categoriaBlog_id) == $categoria->id ? 'selected' : '' }}>
+                <option value="{{ $categoria->id }}" {{ old('categoria_id', $articulo->categoriaBlog_id) == $categoria->id ? 'selected' : '' }}>
                     {{ $categoria->nombre }}
                 </option>
             @endforeach

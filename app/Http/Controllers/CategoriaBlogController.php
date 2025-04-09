@@ -35,7 +35,7 @@ class CategoriaBlogController extends Controller
             'descripcion' => $request['descripcion']
         ]);
 
-        return redirect()->route('categoriaBlog.index');
+        return redirect()->route('categoriaBlog.index')->with('status', 'Categoria creada correctamente');
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoriaBlogController extends Controller
             'descripcion' => $request['descripcion']
         ]);
 
-        return redirect()->route('categoriaBlog.index');
+        return redirect()->route('categoriaBlog.index')->with('status', 'Categoria actualizada correctamente');
     }
 
     /**
@@ -73,6 +73,11 @@ class CategoriaBlogController extends Controller
     public function destroy(CategoriaBlog $categoriaBlog)
     {
         $categoriaBlog->delete();
-        return redirect()->route('categoriaBlog.index');
+        return redirect()->route('categoriaBlog.index')->with('status', 'Categoria eliminada correctamente');
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
     }
 }

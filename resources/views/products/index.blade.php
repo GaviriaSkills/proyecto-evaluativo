@@ -15,8 +15,9 @@
             @endforeach
         </select>
     </form>
-
-    <a href="{{ route('product.create') }}">@lang('New Product')</a>
+    @auth
+        <a href="{{ route('product.create') }}">@lang('New Product')</a>
+    @endauth
     <ul>
         @forelse ($products as $product)
             <li>
